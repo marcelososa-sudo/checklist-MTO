@@ -15,12 +15,19 @@ let formData = {};
 let isSubmitting = false;
 
 // Inicialización cuando se carga la página
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
     initializeForm();
     setupEventListeners();
     updateDateTime();
     loadSavedProgress();
 });
+
+window.onload = function() {
+    const submitButton = document.querySelector('button[type="submit"]');
+    if (submitButton) {
+        submitButton.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+};
 
 // Inicializar formulario
 function initializeForm() {
