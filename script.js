@@ -23,10 +23,9 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 window.onload = function() {
-    const submitButton = document.querySelector('button[type="submit"]');
-    if (submitButton) {
-        submitButton.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    }
+    setTimeout(function() {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }, 500); // Pequeño retraso para asegurar que todo el contenido se ha renderizado
 };
 
 // Inicializar formulario
