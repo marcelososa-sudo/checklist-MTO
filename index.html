@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Mantenimiento - Complejo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="bg-primary text-white p-4 mb-4">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1><i class="fas fa-tools me-3"></i>Sistema de Control de Mantenimiento</h1>
+                    <p class="mb-0">Complejo Casino - Hotel - Centro Comercial</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <div id="datetime" class="h5 mb-0"></div>
+                </div>
+            </div>
+        </header>
+
+        <form id="maintenanceForm" class="needs-validation" novalidate>
+            <!-- Información del Operador -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5><i class="fas fa-user me-2"></i>Información del Operador</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="operatorName" class="form-label">Nombre del Operador *</label>
+                            <input type="text" class="form-control" id="operatorName" required>
+                            <div class="invalid-feedback">Por favor ingrese el nombre del operador.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inspectionDate" class="form-label">Fecha de Inspección *</label>
+                            <input type="date" class="form-control" id="inspectionDate" required>
+                            <div class="invalid-feedback">Por favor seleccione la fecha de inspección.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cisternas -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5><i class="fas fa-water me-2"></i>Cisternas</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="tanque1" class="form-label">Tanque 1 (Litros)</label>
+                            <input type="number" class="form-control" id="tanque1" value="100000" max="100000">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="tanque2" class="form-label">Tanque 2 (Litros)</label>
+                            <input type="number" class="form-control" id="tanque2" value="100000" max="100000">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="pulmonAuxiliar" class="form-label">Pulmón Auxiliar (Litros)</label>
+                            <input type="number" class="form-control" id="pulmonAuxiliar" value="2700" max="2700">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="bombaEncendida" class="form-label">Bomba Encendida</label>
+                            <select class="form-select" id="bombaEncendida">
+                                <option value="">Seleccionar</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bombas de Incendios -->
+            <div class="card mb-4">
+                <div class="card-header bg-danger text-white">
+                    <h5><i class="fas fa-fire-extinguisher me-2"></i>Revisión de Bombas de Incendios</h5>
+                </div>
+                <div class="card-body">
+                    <label for="bombasIncendio" class="form-label">Estado de Bombas (Bomba Joker / Pérdidas de Agua)</label>
+                    <textarea class="form-control" id="bombasIncendio" rows="3" placeholder="Colocar si funciona bomba joker o si se detecta alguna pérdida de agua"></textarea>
+                </div>
+            </div>
+
+            <!-- Bombas Cloacales del Casino -->
+            <div class="card mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5><i class="fas fa-pump-soap me-2"></i>Bombas Cloacales del Casino</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Bomba 1</h6>
+                            <div class="mb-3">
+                                <label for="bomba1Estado" class="form-label">Estado</label>
+                                <select class="form-select" id="bomba1Estado">
+                                    <option value="">Seleccionar</option>
+                                    <option value="operativa">Operativa</option>
+                                    <option value="no-operativa">No Operativa</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="bomba1Fecha" class="form-label">Fecha de Control</label>
+                                <input type="date" class="form-control" id="bomba1Fecha">
+                            </div>
+                            <div class="mb-3">
+                                <label for="bomba1Encendida" class="form-label">Encendida/Apagada</label>
+                                <select class="form-select" id="bomba1Encendida">
+                                    <option value="">Seleccionar</option>
+                                    <option value="encendida">Encendida</option>
+                                    <option value="apagada">Apagada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Bomba 2</h6>
+                            <div class="mb-3">
+                                <label for="bomba2Estado" class="form-label">Estado</label>
+                                <select class="form-select" id="bomba2Estado">
+                                    <option value="">Seleccionar</option>
+                                    <option value="operativa">Operativa</option>
+                                    <option value="no-operativa">No Operativa</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="bomba2Fecha" class="form-label">Fecha de Control</label>
+                                <input type="date" class="form-control" id="bomba2Fecha">
+                            </div>
+                            <div class="mb-3">
+                                <label for="bomba2Encendida" class="form-label">Encendida/Apagada</label>
+                                <select class="form-select" id="bomba2Encendida">
+                                    <option value="">Seleccionar</option>
+                                    <option value="encendida">Encendida</option>
+                                    <option value="apagada">Apagada</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tablero General de Electricidad -->
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5><i class="fas fa-bolt me-2"></i>Tablero General de Electricidad</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="tableroFuncionamiento" class="form-label">Funcionamiento</label>
+                            <select class="form-select" id="tableroFuncionamiento">
+                                <option value="">Seleccionar</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="tableroProblema" class="form-label">Descripción del Problema</label>
+                            <textarea class="form-control" id="tableroProblema" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grupo Electrógeno -->
+            <div class="card mb-4">
+                <div class="card-header bg-secondary text-white">
+                    <h5><i class="fas fa-cog me-2"></i>Grupo Electrógeno (Revisión)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="controlAceite" class="form-label">Control de Aceite (Fecha)</label>
+                            <input type="date" class="form-control" id="controlAceite">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="combustible" class="form-label">Combustible (Litros)</label>
+                            <input type="number" class="form-control" id="combustible">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="controlBaterias" class="form-label">Control de Baterías (Agua)</label>
+                            <input type="text" class="form-control" id="controlBaterias" placeholder="Cantidad de agua">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="nivelAguaRadiador" class="form-label">Nivel Agua Radiador</label>
+                            <select class="form-select" id="nivelAguaRadiador">
+                                <option value="">Seleccionar</option>
+                                <option value="a-nivel">A Nivel</option>
+                                <option value="falta-agua">Falta Agua</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="modoOperacion" class="form-label">Modo de Operación</label>
+                            <select class="form-select" id="modoOperacion">
+                                <option value="">Seleccionar</option>
+                                <option value="automatico">Automático</option>
+                                <option value="manual">Manual</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terraza Este -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5><i class="fas fa-snowflake me-2"></i>Terraza Este - Aires Acondicionados</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Revisión de Funcionamiento (Equipos 1-9)</label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoEste1" value="1">
+                                        <label class="form-check-label" for="equipoEste1">1</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoEste2" value="2">
+                                        <label class="form-check-label" for="equipoEste2">2</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoEste3" value="3">
+                                        <label class="form-check-label" for="equipoEste3">3</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoEste4" value="4">
+                                        <label class="form-check-label" for="equipoEste4">4</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoEste5" value="5">
+                                        <label class="form-check-label" for="equipoEste5">5</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoEste6" value="6">
+                                        <label class="form-check-label" for="equipoEste6">6</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoEste7" value="7">
+                                        <label class="form-check-label" for="equipoEste7">7</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoEste8" value="8">
+                                        <label class="form-check-label" for="equipoEste8">8</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoEste9" value="9">
+                                        <label class="form-check-label" for="equipoEste9">9</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="fallaEste" class="form-label">Falla Detectada</label>
+                            <textarea class="form-control" id="fallaEste" rows="2" placeholder="Descripción del problema"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="limpiezaEste" class="form-label">Revisión de Limpieza</label>
+                            <select class="form-select" id="limpiezaEste">
+                                <option value="">Seleccionar</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                            <textarea class="form-control mt-2" id="fallaLimpiezaEste" rows="2" placeholder="Falla detectada en limpieza"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="descargasEste" class="form-label">Revisión de Descargas</label>
+                            <select class="form-select" id="descargasEste">
+                                <option value="">Seleccionar</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                            <textarea class="form-control mt-2" id="fallaDescargasEste" rows="2" placeholder="Falla detectada en descargas"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terraza Oeste -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5><i class="fas fa-snowflake me-2"></i>Terraza Oeste - Aires Acondicionados</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Revisión de Funcionamiento (Equipos 1-9)</label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoOeste1" value="1">
+                                        <label class="form-check-label" for="equipoOeste1">1</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoOeste2" value="2">
+                                        <label class="form-check-label" for="equipoOeste2">2</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoOeste3" value="3">
+                                        <label class="form-check-label" for="equipoOeste3">3</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoOeste4" value="4">
+                                        <label class="form-check-label" for="equipoOeste4">4</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoOeste5" value="5">
+                                        <label class="form-check-label" for="equipoOeste5">5</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoOeste6" value="6">
+                                        <label class="form-check-label" for="equipoOeste6">6</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoOeste7" value="7">
+                                        <label class="form-check-label" for="equipoOeste7">7</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoOeste8" value="8">
+                                        <label class="form-check-label" for="equipoOeste8">8</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="equipoOeste9" value="9">
+                                        <label class="form-check-label" for="equipoOeste9">9</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="fallaOeste" class="form-label">Falla Detectada</label>
+                            <textarea class="form-control" id="fallaOeste" rows="2" placeholder="Descripción del problema"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="limpiezaOeste" class="form-label">Revisión de Limpieza</label>
+                            <select class="form-select" id="limpiezaOeste">
+                                <option value="">Seleccionar</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                            <textarea class="form-control mt-2" id="fallaLimpiezaOeste" rows="2" placeholder="Falla detectada en limpieza"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="descargasOeste" class="form-label">Revisión de Descargas</label>
+                            <select class="form-select" id="descargasOeste">
+                                <option value="">Seleccionar</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                            <textarea class="form-control mt-2" id="fallaDescargasOeste" rows="2" placeholder="Falla detectada en descargas"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="nivelTanques12" class="form-label">Nivel de Tanques 1 y 2</label>
+                            <input type="text" class="form-control" id="nivelTanques12" placeholder="Nivel de tanques">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="nivelTanquesTecho" class="form-label">Nivel Tanques Techo Casino</label>
+                            <input type="text" class="form-control" id="nivelTanquesTecho" placeholder="Nivel de tanques">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="bombaPresurizadora" class="form-label">Bomba Presurizadora</label>
+                            <select class="form-select" id="bombaPresurizadora">
+                                <option value="">Seleccionar</option>
+                                <option value="on">On</option>
+                                <option value="off">Off</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="funcionamientoCaldera" class="form-label">Funcionamiento de Caldera</label>
+                            <select class="form-select" id="funcionamientoCaldera">
+                                <option value="">Seleccionar</option>
+                                <option value="on">On</option>
+                                <option value="off">Off</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fallaCaldera" class="form-label">Falla Detectada Caldera</label>
+                            <textarea class="form-control" id="fallaCaldera" rows="2" placeholder="Descripción del problema"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="temperaturaCaldera" class="form-label">Temperatura (°C)</label>
+                            <input type="number" class="form-control" id="temperaturaCaldera" placeholder="Valor en grados">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="text-center mb-4">
+                <button type="button" class="btn btn-secondary me-3" id="saveProgress">
+                    <i class="fas fa-save me-2"></i>Guardar Progreso
+                </button>
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-paper-plane me-2"></i>Enviar Formulario
+                </button>
+            </div>
+        </form>
+
+        <!-- Modal de Confirmación -->
+        <div class="modal fade" id="confirmModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmar Envío</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Está seguro que desea enviar el formulario de mantenimiento?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="confirmSend">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Éxito -->
+        <div class="modal fade" id="successModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title">
+                            <i class="fas fa-check-circle me-2"></i>Formulario Enviado
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        El formulario de mantenimiento ha sido enviado exitosamente. Los datos han sido guardados y se ha enviado un email de confirmación.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+            <!-- Sala de Casino -->
+            <div class="card mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5><i class="fas fa-dice me-2"></i>Sala de Casino</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="temperaturaAA" class="form-label">Control de Temperatura AA</label>
+                            <textarea class="form-control" id="temperaturaAA" rows="2" placeholder="Descripción de sectores y cantidad de aires en funcionamiento"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="controlBanos" class="form-label">Control de Baños (Sector F, D y Rubí)</label>
+                            <textarea class="form-control" id="controlBanos" rows="2" placeholder="Fallas detectadas"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="fallasBanos" class="form-label">Fallas en Baños</label>
+                            <textarea class="form-control" id="fallasBanos" rows="2" placeholder="Fuelles, canillas rotas o pulsadores de inodoros"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="extractores" class="form-label">Funcionamiento de Extractores</label>
+                            <select class="form-select" id="extractores">
+                                <option value="">Seleccionar</option>
+                                <option value="funcionando">Funcionando</option>
+                                <option value="no-funcionando">No Funcionando</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="revisionBarras" class="form-label">Revisión de Barras (Sala Central y Rubí)</label>
+                            <textarea class="form-control" id="revisionBarras" rows="2" placeholder="Fallas detectadas"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="estrellasIngreso" class="form-label">Estrellas de Ingreso</label>
+                            <textarea class="form-control" id="estrellasIngreso" rows="2" placeholder="Horario de encendido y apagado (10:00 hs - 5:00/6:00 hs)"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="reflectorIngreso" class="form-label">Reflector de Ingreso</label>
+                            <select class="form-select" id="reflectorIngreso">
+                                <option value="">Seleccionar</option>
+                                <option value="encendido">Encendido</option>
+                                <option value="apagado">Apagado</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="banosPlantaAlta" class="form-label">Control Baños Planta Alta y Baja</label>
+                            <textarea class="form-control" id="banosPlantaAlta" rows="2" placeholder="Estado de baños"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Centro Comercial -->
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5><i class="fas fa-shopping-cart me-2"></i>Centro Comercial</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Terraza Técnica</h6>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="tanqueCentro1" class="form-label">Nivel Tanque 1 (Litros)</label>
+                            <input type="number" class="form-control" id="tanqueCentro1">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="tanqueCentro2" class="form-label">Nivel Tanque 2 (Litros)</label>
+                            <input type="number" class="form-control" id="tanqueCentro2">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="tanqueCentro3" class="form-label">Nivel Tanque 3 (Litros)</label>
+                            <input type="number" class="form-control" id="tanqueCentro3">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="bombaPresurizadoraCentro" class="form-label">Bomba Presurizadora</label>
+                            <select class="form-select" id="bombaPresurizadoraCentro">
+                                <option value="">Seleccionar</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fallaPresurizadoraCentro" class="form-label">Falla Detectada</label>
+                            <textarea class="form-control" id="fallaPresurizadoraCentro" rows="2" placeholder="Descripción del problema"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="termotanque" class="form-label">Termotanque</label>
+                            <select class="form-select" id="termotanque">
+                                <option value="">Seleccionar</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="bombaTrituradora" class="form-label">Bomba Trituradora</label>
+                            <textarea class="form-control" id="bombaTrituradora" rows="2" placeholder="Funcionamiento y nivel de cámara cloacal"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="camaraCloacal" class="form-label">Control Cámara Cloacal</label>
+                            <input type="date" class="form-control" id="camaraCloacal" placeholder="Fecha de limpieza">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="banosCentro" class="form-label">Baños Centro Comercial</label>
+                            <textarea class="form-control" id="banosCentro" rows="2" placeholder="Fallas detectadas"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5><i class="fas fa-bed me-2"></i>Hotel</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="bombaCloacalHotel" class="form-label">Revisión Bomba Cloacal</label>
+                            <textarea class="form-control" id="bombaCloacalHotel" rows="2" placeholder="Estado de la bomba"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="bombaPiletaSpa" class="form-label">Bomba Pileta Spa</label>
+                            <select class="form-select" id="bombaPiletaSpa">
+                                <option value="">Seleccionar</option>
+                                <option value="filtrado">Filtrado</option>
+                                <option value="recirculacion">Recirculación</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="limpiezaPiletas" class="form-label">Limpieza de Piletas</label>
+                            <input type="datetime-local" class="form-control" id="limpiezaPiletas">
+                            <small class="form-text text-muted">Barrefondo, fecha y hora</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="climatizador" class="form-label">Funcionamiento Climatizador</label>
+                            <select class="form-select" id="climatizador">
+                                <option value="">Seleccionar</option>
+                                <option value="funcionando">Funcionando</option>
+                                <option value="no-funcionando">No Funcionando</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="temperaturaSpa" class="form-label">Temperatura Pileta Spa (°C)</label>
+                            <input type="number" class="form-control" id="temperaturaSpa" step="0.1">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="piletaExterior" class="form-label">Bomba Pileta Exterior</label>
+                            <select class="form-select" id="piletaExterior">
+                                <option value="">Seleccionar</option>
+                                <option value="filtrado">Filtrado</option>
+                                <option value="recirculacion">Recirculación</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="tanqueHotel1" class="form-label">Tanque Hotel 1 (Nivel)</label>
+                            <input type="text" class="form-control" id="tanqueHotel1" placeholder="Nivel del tanque">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="tanqueHotel2" class="form-label">Tanque Hotel 2 (Nivel)</label>
+                            <input type="text" class="form-control" id="tanqueHotel2" placeholder="Nivel del tanque">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="bombaCisterna" class="form-label">Bomba Cisterna (Planta Baja)</label>
+                            <select class="form-select" id="bombaCisterna">
+                                <option value="">Seleccionar</option>
+                                <option value="funcionando">Funcionando</option>
+                                <option value="no-funcionando">No Funcionando</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="bombaVariador" class="form-label">Bomba Variador (Planta Alta)</label>
+                            <select class="form-select" id="bombaVariador">
+                                <option value="">Seleccionar</option>
+                                <option value="funcionando">Funcionando</option>
+                                <option value="no-funcionando">No Funcionando</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="bombaAguaCaliente" class="form-label">Bomba Agua Caliente (Planta Alta)</label>
+                            <select class="form-select" id="bombaAguaCaliente">
+                                <option value="">Seleccionar</option>
+                                <option value="funcionando">Funcionando</option>
+                                <option value="no-funcionando">No Funcionando</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="calderaHotel" class="form-label">Caldera Hotel</label>
+                            <select class="form-select" id="calderaHotel">
+                                <option value="">Seleccionar</option>
+                                <option value="funcionando">Funcionando</option>
+                                <option value="no-funcionando">No Funcionando</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="temperaturaCalderaHotel" class="form-label">Temperatura Caldera (°C)</label>
+                            <input type="number" class="form-control" id="temperaturaCalderaHotel">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="tanqueAlta1" class="form-label">Tanque Planta Alta 1</label>
+                            <input type="text" class="form-control" id="tanqueAlta1" placeholder="Nivel">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="tanqueAlta2" class="form-label">Tanque Planta Alta 2</label>
+                            <input type="text" class="form-control" id="tanqueAlta2" placeholder="Nivel">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="tanqueAlta3" class="form-label">Tanque Planta Alta 3</label>
+                            <input type="text" class="form-control" id="tanqueAlta3" placeholder="Nivel">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="tanquesRiego" class="form-label">Tanques de Riego</label>
+                            <textarea class="form-control" id="tanquesRiego" rows="2" placeholder="Estado de tanques"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="bombaRiego" class="form-label">Bomba de Riego</label>
+                            <select class="form-select" id="bombaRiego">
+                                <option value="">Seleccionar</option>
+                                <option value="funcionando">Funcionando</option>
+                                <option value="no-funcionando">No Funcionando</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="lecturaGas" class="form-label">Lectura de Gas (Zepelín)</label>
+                            <input type="number" class="form-control" id="lecturaGas" step="0.01">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
